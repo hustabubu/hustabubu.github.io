@@ -52,35 +52,37 @@ https://www.bilibili.com/video/BV1124y117Dr/?share_source=copy_web
   ```
 
 ##### 3.重置文件
-  1. 在文件已修改，但未提交，我们觉得文件修改不好，想放弃修改，恢复到修改之前，可以用 `git restore`来恢复；
+  1. 在文件已修改，但未提交，我们觉得文件修改不好，想放弃修改，恢复到修改之前，可以用 `git restore` 来恢复；
   2. 代码已经提交到节点 n4，但是发现不好，想回到节点 n2 开始
    ```mermaid
     graph LR
       n1 --> n2 --> n3 --> n4
    ```
-  - 先`git log`查看日志，找到提交n2节点的 commit ID(前几位就行，不用写全)
-  - 然后`git switch <commit ID>`(前几位就行，不用写全)
+  - 先 `git log` 查看日志，找到提交n2节点的 commit ID(前几位就行，不用写全)
+  - 然后 `git switch <commit ID>` (前几位就行，不用写全)
 
 ##### 4.查看历史版本和回滚
 - 查看历史: `git log`
-- 回滚??? `git checkout xxx` `git reset`
+- 回滚??? `git checkout xxx`  `git reset`
 
 ##### 5.合并分支问题
 - **场景一**：当提交正式版本（节点为 v1.0.0）后；
   然后继续开发新功能（另起分支 "dev1"），提交几次后；
   发现正式版本有 bug1，为修复 bug，在 v1.0.0 节点上另起分支 "bug1"，然后修复完 bug 后，需要合并。且 dev1 又更新到了新节点，开发完了，也需要合并。
+
     ```mermaid
     gitGraph
       commit id:"n1"
       commit id:"n2" tag:"v1.0.0"
-      branch dev1 order:2
+      branch dev1
       commit id:"n3"
       commit id:"n4"
       checkout main
-      branch bug1 order:1
+      branch bug1
       commit id:"n5"
       commit id:"n6"
     ```
+
 步骤：
 1. 把分支 bug1 合并到 main 分支
    ```bash
@@ -100,7 +102,7 @@ https://www.bilibili.com/video/BV1124y117Dr/?share_source=copy_web
       commit id:"n5"
       commit id:"n6"
       checkout main
-      merge bug1 id:"n7" 
+      merge bug1 id:"n7"
     ```
   - 由于这里相当于同向连接，所以合并是快速合并
     ```mermaid
@@ -110,10 +112,10 @@ https://www.bilibili.com/video/BV1124y117Dr/?share_source=copy_web
   
 2. 把分支 dev1 合并到 main 分支
    如果当前分支不是 main，则先切换到 main 分支
-```bash
-  git switch main  # 切换到 main 分支
-  git merge dev1   # 将 dev1 分支合并到 main 分支
-```
+    ```bash
+      git switch main  # 切换到 main 分支
+      git merge dev1   # 将 dev1 分支合并到 main 分支
+    ```
   ```mermaid
     gitGraph
       commit id:"n1"
@@ -143,7 +145,7 @@ https://www.bilibili.com/video/BV1124y117Dr/?share_source=copy_web
   - 别忘了提交（在图形化界面，得先点+改变文件状态为暂存状态，再提交）
 
 ##### 6.恢复误删除的分支
-1. `git reflog` 或`git log`查看引用历史记录；
+1. `git reflog` 或 `git log` 查看引用历史记录；
    此时看到
    ```hash
     PS D:\编程笔记\test> git reflog
@@ -156,12 +158,12 @@ https://www.bilibili.com/video/BV1124y117Dr/?share_source=copy_web
    - 指针指向："HEAD@{n}"表示第 n 次（时间逆序？）引用操作；
    - 操作类似：“commit:”表示该引用操作的类型是提交操作；
    - "add feature A"表示提交操作对应的 commit message。 
-2. 用`git branch <branchname> <commit ID>`来恢复分支(试验有效)
-   或用`git checkout -b <branchname> <commit ID>`来恢复分支（未试验）
+2. 用 `git branch <branchname> <commit ID>` 来恢复分支(试验有效)
+   或用 `git checkout -b <branchname> <commit ID>` 来恢复分支（未试验）
       实际上是：基于commit ID ，新建一个分支
 
 ##### 7.在指定节点创建分支
-得先`git log`或`git reflog`找到相应节点的 `commit ID`
+得先 `git log` 或 `git reflog` 找到相应节点的 `commit ID`
 ```bash
   git switch -c <分支名> <commit ID>
 ```
@@ -170,33 +172,26 @@ https://www.bilibili.com/video/BV1124y117Dr/?share_source=copy_web
 
 #### 1.安装及简单配置
 ##### 1.1. 安装（略）
-   查看版本`git -v`
+   查看版本 `git -v`
 
 ##### 1.2 简单配置
 使用git前，我们需要配置一下两个属性 name 和 email，这两个信息会用来在存储代码时记录用户的身份。可以直接在命令行中通过指令来设置：
 1. 配置 name 和 email
-
-```bash
-  git config --global user.name "xxxx"
-  git config --global user.email "xxx@xxx.xxx"
-```
+    ```bash
+      git config --global user.name "xxxx"
+      git config --global user.email "xxx@xxx.xxx"
+    ```
 ##### 1.3 初始化项目
 默认情况下，磁盘中的文件并不由 git 管理，我们必须要对代码目录进行初始化，初始化后 git 才能正常的管理文件。进入目录后，直接在目录中执行 `git init` 即可完成项目的初始化，初始化后目录中会多出一个 .git 目录，这个目录用来存储代码的版本信息，有了.git就意味着项目现在已经开始被 .git 管理了，不希望项目被 git 管理时，只需删除项目中的 .git 即可。
 
-初始化仓库
-
-```bash
-  git init
-```
-
 #### 2.文件状态：
-*可以通过`git status`来查看文件的状态*
+*可以通过 `git status` 来查看文件的状态*
 git中的文件有两种状态：**未跟踪**和**已跟踪**。
-- 未跟踪（untracked）：指文件没有被git所管理
+- 未跟踪（untracked）：指文件没有被 git 所管理
 - 已跟踪（tracked）：指文件已被git管理。已跟踪的文件又有三种状态：未修改、修改和暂存。
-    - 暂存：表示文件修改已经保存，但是尚未提交到git仓库。
-    - 未修改：表示磁盘中的文件和git仓库中文件相同，没有修改。
-    - 已修改：表示磁盘中文件已被修改，和git仓库中文件不同。
+    - 暂存：表示文件修改已经保存，但是尚未提交到 git 仓库。
+    - 未修改：表示磁盘中的文件和 git 仓库中文件相同，没有修改。
+    - 已修改：表示磁盘中文件已被修改，和 git 仓库中文件不同。
 
 ##### 2.1 文件状态的切换
 
@@ -205,9 +200,8 @@ graph LR
   s1[未跟踪] -- git add --> s2[暂存] --git commit--> s3[未修改] -- 修改 -->s4[已修改]-- git add -->s2 
 ```
 
-
 ###### 未跟踪 → 暂存
-目前目录中存在一个文本文件 1.txt，该文件刚刚添加进目录，所以现在文件处于未跟踪（untracked）的状态。如果希望文件交由 git 管理，需要使用 `git add <file>`命令来将文件修改为已跟踪状态：
+目前目录中存在一个文本文件 1.txt，该文件刚刚添加进目录，所以现在文件处于未跟踪（untracked）的状态。如果希望文件交由 git 管理，需要使用 `git add <file>` 命令来将文件修改为已跟踪状态：
 
 ```bash
   git add <filename> #将文件切换到暂存的状态
@@ -216,7 +210,7 @@ graph LR
 *add 命令是一个多功能的命令，如果对没有未跟踪的文件调用它会将其设置为已跟踪，并将其转换为暂存状态。如果对已跟踪的文件调用，它就仅仅会将文件设置为暂存状态。*
 
 ###### 暂存 → 未修改
-使用`git commit -m "信息"`，来将暂存的文件提交到git仓库，此时所以暂存文件都变成了未修改的状态。
+使用 `git commit -m "信息"`，来将暂存的文件提交到git仓库，此时所以暂存文件都变成了未修改的状态。
 - -m 表示 后面要填 提交的信息，==尽量填有价值的信息，比如：修改了什么bug，增加了什么功能等等==
 - -a 表示所有已跟踪的文件
 ```bash
@@ -234,31 +228,28 @@ graph LR
 #### 3.常用的命令
 
 1. **重置文件**
-   在文件已修改，但未提交，我们觉得文件修改不好，向放弃修改，恢复到修改之前，可以用 `git restore`来恢复
+   在文件已修改，但未提交，我们觉得文件修改不好，向放弃修改，恢复到修改之前，可以用 `git restore` 来恢复
+    ```bash
+      git restore <filename> # 恢复文件
+      git restore --staged <filename> # 文件从暂存状态取消掉
+    ```
+    `--staged` 仅取消文件的暂存状态，但不取消操作
 
-```bash
-  git restore <filename> # 恢复文件
-  git restore --staged <filename> # 文件从暂存状态取消掉
-```
-`--staged`仅取消文件的暂存状态，但不取消操作
-
-1. **删除文件**
-
-```bash
-  git rm <filename> # 删除文件
-  git rm <filename> -f # 强制删除
-```
-调用上面命令删除文件后，文件状态变为暂存
+2. **删除文件**
+    ```bash
+      git rm <filename> # 删除文件
+      git rm <filename> -f # 强制删除
+    ```
+    调用上面命令删除文件后，文件状态变为暂存
 
 3. **移动文件**
-
-```bash
-  git mv from to # 移动文件 重命名文件
-```
-比如：把 2.txt 重命名为 3.txt `git mv 2.txt 3.txt`
+    ```bash
+      git mv from to # 移动文件 重命名文件
+    ```
+    比如：把 2.txt 重命名为 3.txt `git mv 2.txt 3.txt`
 
 4. **查看提交日志**
-   展示的是提交日志的详细信息`git log`或`git reflog`
+   展示的是提交日志的详细信息 `git log` 或 `git reflog`
     查看日志时，上下翻页，键盘 Q 退出。
 
 #### 4.分支（branch）
@@ -294,7 +285,7 @@ gitGraph
   git switch -c <branch name> # 创建并切换分支
   git merge <branch name> # 和并分支
 ```
-- `git checkout`也是对分支操作的常用命令，而且是**底层命令**，操作不当会有==风险==。建议用`git switch`
+- `git checkout` 也是对分支操作的常用命令，而且是**底层命令**，操作不当会有==风险==。建议用 `git switch`
 
 #### 5.变基（rebase）
 
@@ -386,7 +377,7 @@ gitGraph
 
 ##### 远程库的操作的命令
 下列大部分操作都可以在 VScode 的图形化界面完成
-这里在本地操作远程仓库所提及的 `<远程库名>`都指的是本地上的远程库名，而远程仓库名字`<url>`？这里要区分开。后面类似
+这里在本地操作远程仓库所提及的 `<远程库名>` 都指的是本地上的远程库名，而远程仓库名字 `<url>`？这里要区分开。后面类似
 
 ```mermaid
 graph LR
@@ -431,17 +422,16 @@ graph LR
     - 指针头：存储硬件中指向的存储地址，此时可以进行读、写操作；
     - 分支头：指向分支的最新的节点；
     - 正常情况下指针头和分支头饰重合在一起的，才能对沿分支最新的节点往后提交节点；
-    - 如果分离，没法操作。仅仅`git switch <分支名> <commit ID>`（即把指针头指向指定非最新的节点）此时，可以读取到此节点的文件的信息，但分支头仍然在此分支最新的节点上，在指定节点上往何方向提交节点？
+    - 如果分离，没法操作。仅仅 `git switch <分支名> <commit ID>` （即把指针头指向指定非最新的节点）此时，可以读取到此节点的文件的信息，但分支头仍然在此分支最新的节点上，在指定节点上往何方向提交节点？
 
 - 如果非得要回到后边的节点对代码进行操作，则可以选择**先创建分支**，此时指针头和分支头都指向新分支的同一个节点上，后再操作。
+    ```bash
+      git switch -c <分支名> <提交id>
+    ```
 
-```bash
-  git switch -c <分支名> <提交id>
-```
-
-- 当提交记录少的时候，可以利用`commit ID`来回切换节点，但是提交记录多的时候，就不容易找了，此时我们通过标签`tag`来实现对特殊节点操作
+- 当提交记录少的时候，可以利用 `commit ID` 来回切换节点，但是提交记录多的时候，就不容易找了，此时我们通过标签 `tag` 来实现对特殊节点操作
+  
 - 可以为提交记录设置标签，**设置标签以后，可以通过标签快速的识别出不同的开发节点**：
-
   ```bash
     git tag
     git tag 版本
@@ -454,9 +444,9 @@ graph LR
 
 #### 8.gitignore
 
-默认情况下，git 会监视项目中所有内容，但是有些内容比如 node_modules 目录中的内容，我们**不希望它被 git 所管理**。我们可以在项目目录中添加一个`.gitignore`文件，来设置那些需要 git 忽略的文件。
+默认情况下，git 会监视项目中所有内容，但是有些内容比如 node_modules 目录中的内容，我们**不希望它被 git 所管理**。我们可以在项目目录中添加一个 `.gitignore` 文件，来设置那些需要 git 忽略的文件。
 
-##### 9.github 的静态页面
+#### 9.github 的静态页面
 
 - 在 github 中，可以将自己的静态页面直接部署到 github 中，它会给我们提供一个地址使得我们的页面变成一个真正的网站，可以供用户访问。
 - 要求：
@@ -482,10 +472,10 @@ facebook 推出的开源的静态的内容管理系统，通过它可以快速�
     `npx create-docusaurus@latest my-website classic`
 
 - 启动项目
-    `npm start`或`yarn start`
+    `npm start` 或 `yarn start`
 
 - 构建项目
-   `npm run build`或`yarn build`
+   `npm run build` 或 `yarn build`
 
 - 配置项目：
   docusaurus.config.js 项目的配置文件
