@@ -23,7 +23,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'hustabubu', // Usually your GitHub org/user name.
-  projectName: 'hustabubu.github.io', // Usually your repo name.
+  projectName: 'hustabubu.github.io', // Usually your repo name.仓库名
 
   // 上传代码时，两个注意事项：
   // 1. deploymentBranch 来制定分支！
