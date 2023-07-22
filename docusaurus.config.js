@@ -37,8 +37,8 @@ const config = {
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'zh-CN',
-    locales: ['zh-CN'],
+    defaultLocale: 'zh',
+    locales: ['zh'],
   },
 
   presets: [
@@ -110,7 +110,7 @@ const config = {
             items: [      // 几个item，就有几项。三个属性：label,to,herf
               {
                 label: '笔记',
-                to: '/docs',
+                to: '/docs/intro',
               },
             ],
           },
