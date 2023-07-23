@@ -29,6 +29,7 @@ const config = {
   // 1. deploymentBranch 来制定分支！
   // 2. 还需要在本地电脑配置一个环境变量：GIT_USER:github的用户名
   deploymentBranch:"gh-pages",
+  trailingSlash: false, //不检查文件路径？
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
