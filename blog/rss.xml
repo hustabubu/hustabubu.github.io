@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>臭皮囊的个人网站 Blog</title>
+        <link>https://hustabubu.github.io/blog</link>
+        <description>臭皮囊的个人网站 Blog</description>
+        <lastBuildDate>Sat, 22 Jul 2023 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>zh</language>
+        <item>
+            <title><![CDATA[生成静态网页的的神器]]></title>
+            <link>https://hustabubu.github.io/blog/first-blog-post</link>
+            <guid>https://hustabubu.github.io/blog/first-blog-post</guid>
+            <pubDate>Sat, 22 Jul 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[找到个好用的生成静态网页的神器，不用掌握前端语言，只需要会 Markdown 就可以拥有一个自己的静态网站。]]></description>
+            <content:encoded><![CDATA[<p>找到个好用的生成静态网页的神器，不用掌握前端语言，只需要会 Markdown 就可以拥有一个自己的静态网站。</p>]]></content:encoded>
+            <category>静态网页</category>
+            <category>docusaurus</category>
+        </item>
+        <item>
+            <title><![CDATA[前端小白的笔记神器]]></title>
+            <link>https://hustabubu.github.io/blog/second-blog-post</link>
+            <guid>https://hustabubu.github.io/blog/second-blog-post</guid>
+            <pubDate>Sat, 22 Jul 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[不会 react，不会搭建网站，不会部署网站……什么都不会！不要紧，Docusaurus 让我快速上手了一个静态网站]]></description>
+            <content:encoded><![CDATA[<p>不会 react，不会搭建网站，不会部署网站……什么都不会！不要紧，Docusaurus 让我快速上手了一个静态网站</p><p>当然也不能全都不会，至少会几点：</p><ul><li>基本的安装、使用 <code>node.js</code></li><li>基本的 <code>git</code> 操作</li><li>用 Markdowm 写文档</li><li>看得懂官方文档</li></ul>]]></content:encoded>
+            <category>笔记</category>
+            <category>docusaurus</category>
+        </item>
+    </channel>
+</rss>
