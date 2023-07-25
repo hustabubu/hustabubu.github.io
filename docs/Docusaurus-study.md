@@ -222,7 +222,7 @@ git push -u origin gh-pages
   deploymentBranch:"gh-pages",  // 指定部署的分支
   trailingSlash: false, //不检查文件路径？
 ```
-#### 5.4. 部署：
+#### 5.4. 部署到 github：
 ##### 命令与环境变量
 - 如果配置了本地电脑的环境变量 `GIT_USER`，值为 `GITHUB_USERNAME`，则
 ```bash
@@ -266,3 +266,50 @@ git config --global user.name "<YOUR_GH_USERNAME>"
 yarn deploy
 ```
   
+#### 5.5. 部署到 gitee：
+在已经部署到了 github 的前提下，把仓库导入到 gitee，然后进行相关配置。（实际上相当于做了镜像？）
+
+默认的使用办法看 gitee pages 的官方文档 
+https://help.gitee.com/services/gitee-pages/intro
+
+这里以个人用户名的个人性化网址为例来记录：
+不妨 github 和 gitee 的用户名都是 abc，
+如果两个 git 的用户名不一样，这里是在 gitee 中操作，你应该知道该填那个用户名。
+现在已经部署到了github，仓库名为： `abc.github.io`
+访问的网址为：`https://abc.github.io/`
+
+在 gitee pages 中，默认情况下，路径就是你的仓库名。如果想首页访问地址不带二级目录，
+例如：`abc.gitee.io`，
+- 则所用的仓库名要求是：`abc`，
+- 仓库为`https://gitee.com/abc/abc`
+- 访问你的 gitee pages 的首页地址为 `https://abc.github.io/`
+
+##### 5.5.1. 大概的步骤：
+1. 导入 github 仓库：
+   选择导入仓库（通常在右上角的 `+`）-->从 GitHub 导入仓库
+   - 注意 ：如果已经用重名的仓库，得先删除它
+   - 默认情况下，会自动帮你把路径填为你的用户名，如果没有，则自己选择或自己输入你的用户名为路径
+2. 设置仓库为公开仓库：
+   没有特别强调，则几乎所有选项都是默认，
+   当前仓库-->管理-->选好所需的默认分支-->公开（开源）
+3. 部署：
+   当前仓库-->服务-->Gitee Pages-->选所需部署的分支-->启动服务
+   - 启用 Gitee Pages 需要实名认证。
+
+通过从 github 导入到 gitee 这种方式，操作比较简单。
+
+##### 5.5.2. 其它部署方法
+###### 方法二：
+如果你想从 Docusaurus 直接打包部署，可能会有问题（主要是路径问题和上传代码问题）：
+1. 路径问题：需要修改 `Docusaurus.config.js` 相应的信息（路径）
+2. 上传问题：
+   - 我们在通常情况下，习惯在 Git 中填写的是 Github 的用户名；
+   - 在 VSCode 中也常用 Github 的用户名和密码；
+   - Github 或 Gitee 仓库有可能需要用 token（口令）来校验；
+  
+无论是用命令行，或者 VSCode 来操作，上传代码可能有坑；即使能上传成功，但有网页的访问路径可能也有问题，得花比较多的时间来填坑。
+
+###### 方法三：
+先打包，再上传到 Gitee。出现坑的可能性比方法二的小。
+   
+
