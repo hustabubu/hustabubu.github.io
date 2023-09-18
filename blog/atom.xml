@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://hustabubu.github.io/blog</id>
+    <title>臭皮囊的个人网站 Blog</title>
+    <updated>2023-07-22T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://hustabubu.github.io/blog"/>
+    <subtitle>臭皮囊的个人网站 Blog</subtitle>
+    <icon>https://hustabubu.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[生成静态网页的的神器]]></title>
+        <id>https://hustabubu.github.io/blog/first-blog-post</id>
+        <link href="https://hustabubu.github.io/blog/first-blog-post"/>
+        <updated>2023-07-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[找到个好用的生成静态网页的神器，不用掌握前端语言，只需要会 Markdown 就可以拥有一个自己的静态网站。]]></summary>
+        <content type="html"><![CDATA[<p>找到个好用的生成静态网页的神器，不用掌握前端语言，只需要会 Markdown 就可以拥有一个自己的静态网站。</p>]]></content>
+        <author>
+            <name>hustabubu</name>
+            <uri>https://hustabubu.github.io/</uri>
+        </author>
+        <category label="静态网页" term="静态网页"/>
+        <category label="docusaurus" term="docusaurus"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[前端小白的笔记神器]]></title>
+        <id>https://hustabubu.github.io/blog/second-blog-post</id>
+        <link href="https://hustabubu.github.io/blog/second-blog-post"/>
+        <updated>2023-07-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[不会 react，不会搭建网站，不会部署网站……什么都不会！不要紧，Docusaurus 让我快速上手了一个静态网站]]></summary>
+        <content type="html"><![CDATA[<p>不会 react，不会搭建网站，不会部署网站……什么都不会！不要紧，Docusaurus 让我快速上手了一个静态网站</p><p>当然也不能全都不会，至少会几点：</p><ul><li>基本的安装、使用 <code>node.js</code></li><li>基本的 <code>git</code> 操作</li><li>用 Markdowm 写文档</li><li>看得懂官方文档</li></ul>]]></content>
+        <author>
+            <name>臭皮囊</name>
+            <uri>https://hustabubu.github.io/</uri>
+        </author>
+        <category label="笔记" term="笔记"/>
+        <category label="docusaurus" term="docusaurus"/>
+    </entry>
+</feed>
